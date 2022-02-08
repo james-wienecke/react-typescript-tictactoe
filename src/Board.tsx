@@ -15,6 +15,7 @@ const Board = (): JSX.Element => {
     }
 
     const handleClick = (i: number): void => {
+        if (checkWinner() || squares[i]) return;
         const selected: string[] = squares.slice();
         selected[i] = player;
         setSquares(selected);
