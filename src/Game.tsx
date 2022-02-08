@@ -1,5 +1,5 @@
 import React from "react";
-// import "./Game.css"
+import "./Game.css"
 import Board from "./Board"
 
 const Game = (): JSX.Element => {
