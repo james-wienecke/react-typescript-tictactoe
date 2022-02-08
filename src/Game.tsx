@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Game.css"
 import Board from "./Board"
 
 const Game = (): JSX.Element => {
+    const [history, setHistory] = useState(Array(9).fill(null));
+    const [player, setPlayer] = useState('X');
+
     return (
         <div className="game">
             <div className="game-board">
