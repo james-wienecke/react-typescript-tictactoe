@@ -1,9 +1,7 @@
 import React from "react";
+import {AppProps} from "./AppProps";
 import './Game.css';
 
-type AppProps = {
-    value: number;
-}
 
 const Square = (props: AppProps): JSX.Element => {
     return (
