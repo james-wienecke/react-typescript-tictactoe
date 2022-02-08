@@ -1,3 +1,3 @@
-export type AppProps = {
+export default interface AppProps {
     value: number;
 }

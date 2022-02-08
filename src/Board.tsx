@@ -1,4 +1,5 @@
 import * as React from "react";
+import AppProps from "./AppProps";
 import './Game.css'
 import Square from "./Square";
 
