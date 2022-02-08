@@ -1,9 +1,8 @@
 import React from "react";
 // import "./Game.css"
 import Board from "./Board"
-import Square from "./Square"
 
-export default function Game() {
+const Game = (): JSX.Element => {
     return (
         <div className="game">
             <div className="game-board">
@@ -16,3 +15,5 @@ export default function Game() {
         </div>
     );
 }
+
+export default Game;

@@ -1,10 +1,12 @@
 import React from "react";
 import './Game.css';
 
-export default function Square() {
+const Square = (): JSX.Element => {
     return (
         <button className="square">
             todo
         </button>
     );
 }
+
+export default Square;
