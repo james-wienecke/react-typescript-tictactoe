@@ -2,10 +2,21 @@ import * as React from "react";
 import AppProps from "./AppProps";
 import './Game.css'
 import Square from "./Square";
+import {useState} from "react";
 
 const Board = (): JSX.Element => {
+    const [squares, setSquares] = useState(Array(9).fill(null));
+
     const renderSquare = (i: number) => {
-        return <Square value={i}/>
+        return <Square
+            value={squares[i]}
+            onClick={() => handleClick(i)}/>
+    }
+
+    const handleClick = (i: number): void => {
+        const selected: string[] = squares.slice();
+        selected[i] = 'X';
+        setSquares(selected);
     }
 
     const status: string = "Next player: X";

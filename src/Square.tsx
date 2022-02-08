@@ -4,10 +4,11 @@ import './Game.css';
 
 
 const Square = (props: AppProps): JSX.Element => {
-    const [value, setValue] = useState("")
+    // const [value, setValue] = useState("")
+
     return (
-        <button className="square" onClick={ () => setValue("X") }>
-            {value}
+        <button className="square" onClick={ () => props.onClick() }>
+            {props.value}
         </button>
     );
 }
