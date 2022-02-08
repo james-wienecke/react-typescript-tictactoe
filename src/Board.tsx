@@ -6,6 +6,7 @@ import {useState} from "react";
 
 const Board = (): JSX.Element => {
     const [squares, setSquares] = useState(Array(9).fill(null));
+    const [player, setPlayer] = useState('X');
 
     const renderSquare = (i: number) => {
         return <Square
@@ -15,11 +16,17 @@ const Board = (): JSX.Element => {
 
     const handleClick = (i: number): void => {
         const selected: string[] = squares.slice();
-        selected[i] = 'X';
+        selected[i] = player;
         setSquares(selected);
+        swapPlayer();
     }
 
-    const status: string = "Next player: X";
+    const swapPlayer = (): void => {
+        if (player === 'X') setPlayer('O');
+        else if (player === 'O') setPlayer('X');
+    }
+
+    const status: string = `Next player: ${player}`;
 
     return (
         <div>
