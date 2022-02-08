@@ -2,20 +2,23 @@ import * as React from "react";
 import AppProps from "./AppProps";
 import './Game.css'
 import Square from "./Square";
-import {useState} from "react";
+import Status from "./Status";
+import {useState, useEffect} from "react";
 
 const Board = (): JSX.Element => {
     const [squares, setSquares] = useState(Array(9).fill(null));
     const [player, setPlayer] = useState('X');
+    const [winner, setWinner] = useState('');
 
-    const renderSquare = (i: number) => {
+    const renderSquare = (i: number): JSX.Element => {
         return <Square
             value={squares[i]}
             onClick={() => handleClick(i)}/>
     }
 
     const handleClick = (i: number): void => {
-        if (checkWinner() || squares[i]) return;
+        // exit early from the click event if square is already filled or game is over
+        if (winner || squares[i]) return;
         const selected: string[] = squares.slice();
         selected[i] = player;
         setSquares(selected);
@@ -26,7 +29,7 @@ const Board = (): JSX.Element => {
         player === 'X' ? setPlayer('O') : setPlayer('X');
     }
 
-    const checkWinner = (): string => {
+    const checkWinner = (): void => {
         const lines = [
             [0, 1, 2],
             [3, 4, 5],
@@ -40,25 +43,26 @@ const Board = (): JSX.Element => {
         for (let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i];
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                return squares[a];
+                setWinner(squares[a]);
             }
         }
-        return '';
     }
 
-    const status = (): string => {
-        const winner: string = checkWinner();
+    const status = (): JSX.Element => {
         let text: string;
-        if (winner !== '')
+        if (winner)
             text = `Winner: ${winner}!`;
         else
             text = `Next player: ${player}`;
-        return text;
+        return <span>{text}</span>;
     }
+
+    // hook to check if a player has won *after* all of Board's dom updates happen
+    useEffect(checkWinner);
 
     return (
         <div>
-            <div className="status">{status()}</div>
+            <Status player={player} winner={winner} />
             <div className="board-row">
                 {renderSquare(0)}
                 {renderSquare(1)}
