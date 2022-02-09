@@ -5,14 +5,15 @@ import Square from "./Square";
 interface BoardProps {
     squares: string[];
     player: string;
-    onClick: (i: number) => void;
+    handleClick: (i: number) => void;
 }
 
 const Board = (props: BoardProps): JSX.Element => {
     const renderSquare = (i: number): JSX.Element => {
-        return <Square
-            player={props.squares[i]}
-            handleClick={() => props.onClick(i)}/>
+        return (
+            <Square player={props.squares[i]}
+            handleClick={() => props.handleClick(i)}/>
+        )
     }
 
     return (

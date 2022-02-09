@@ -4,14 +4,16 @@ import Board from "./Board"
 import Status from "./Status";
 
 const Game = (): JSX.Element => {
+    // game board history
     const [history, setHistory] = useState([Array(9).fill(null)]);
+    // board state at the current point in history
     const [current, setCurrent] = useState(history[history.length - 1]);
-
+    // active player
     const [player, setPlayer] = useState('X');
+    // game winner
     const [winner, setWinner] = useState('');
 
-
-    const addToHistory = (board: string[]) => {
+    const addToHistory = (board: string[]): void => {
         const updated = history.slice();
         updated.push(board);
         setHistory(updated);
@@ -29,16 +31,13 @@ const Game = (): JSX.Element => {
         addToHistory(current);
 
         swapPlayer();
-
     }
-
 
     const swapPlayer = (): void => {
         player === 'X' ? setPlayer('O') : setPlayer('X');
     }
 
     const checkWinner = (): void => {
-        const squares = current;
         const lines = [
             [0, 1, 2],
             [3, 4, 5],
@@ -51,29 +50,19 @@ const Game = (): JSX.Element => {
         ];
         for (let i = 0; i < lines.length; i++) {
             const [a, b, c] = lines[i];
-            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-                setWinner(squares[a]);
+            if (current[a] && current[a] === current[b] && current[a] === current[c]) {
+                setWinner(current[a]);
             }
         }
-    }
-
-    const status = (): JSX.Element => {
-        let text: string;
-        if (winner)
-            text = `Winner: ${winner}!`;
-        else
-            text = `Next player: ${player}`;
-        return <span>{text}</span>;
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
     useEffect(checkWinner);
 
-
     return (
     <div className="game">
         <div className="game-board">
-            <Board player={player} squares={current} onClick={handleClick} />
+            <Board player={player} squares={current} handleClick={handleClick} />
         </div>
         <div className="game-info">
             <Status player={player} winner={winner} />
