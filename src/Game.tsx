@@ -79,7 +79,7 @@ const Game = (): JSX.Element => {
             <Board player={player} squares={current} handleClick={handleClick} />
         </div>
         <div className="game-info">
-            <Status player={player} winner={winner} />
+            <Status player={player} winner={winner} step={step}/>
             <ol>{moves}</ol>
         </div>
     </div>
