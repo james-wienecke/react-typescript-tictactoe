@@ -7,12 +7,9 @@ interface StatusProps {
 }
 
 const Status = (props: StatusProps): JSX.Element => {
-    const status = (): string => {
-        if (props.winner) return `Winner: ${props.winner}!`
-        else return `Next player: ${props.player}`
-    }
-
-    return <span>{ status() }</span>
+    return (<span>
+        { (props.winner) ? `Winner: ${props.winner}!` :  `Next player: ${props.player}` }
+    </span>)
 }
 
 export default Status;

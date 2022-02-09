@@ -57,7 +57,7 @@ const Game = (): JSX.Element => {
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
-    useLayoutEffect(checkWinner, [history]);
+    useLayoutEffect(checkWinner, [player]);
 
     return (
     <div className="game">
