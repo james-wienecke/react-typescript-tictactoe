@@ -3,6 +3,7 @@ import "./Game.css"
 import Board from "./Board"
 import Status from "./Status";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
 const Game = (): JSX.Element => {
     // game board history
@@ -62,9 +63,9 @@ const Game = (): JSX.Element => {
     const moves: JSX.Element[] = history.map((step, move) => {
         const label = move ? 'Go to move #' + move : "Go to game start";
         return (
-            <li key={move}>
-                <button onClick={() => jumpTo(move)}>{label}</button>
-            </li>
+            <div key={move} className="my-1 d-flex">
+                <Button className="flex-grow-1" onClick={() => jumpTo(move)}>{label}</Button>
+            </div>
         );
     });
 
@@ -85,7 +86,7 @@ const Game = (): JSX.Element => {
             <h2>Status</h2>
             <Container className="row">
                 <Status player={player} winner={winner} step={step}/>
-                <ol className="col-12 col-lg-6">{moves}</ol>
+                <Container fluid className="col-12 col-lg-6">{moves}</Container>
             </Container>
         </Container>
     </Container>
