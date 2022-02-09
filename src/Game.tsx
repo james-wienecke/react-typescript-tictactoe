@@ -2,6 +2,7 @@ import React, {useEffect, useLayoutEffect, useState} from "react";
 import "./Game.css"
 import Board from "./Board"
 import Status from "./Status";
+import Container from "react-bootstrap/Container";
 
 const Game = (): JSX.Element => {
     // game board history
@@ -74,15 +75,15 @@ const Game = (): JSX.Element => {
     }
 
     return (
-    <div className="game">
-        <div className="game-board">
+    <Container className="game row mx-auto">
+        <Container className="game-board mx-auto my-4 col">
             <Board player={player} squares={current} handleClick={handleClick} />
-        </div>
-        <div className="game-info">
+        </Container>
+        <Container className="game-info col">
             <Status player={player} winner={winner} step={step}/>
             <ol>{moves}</ol>
-        </div>
-    </div>
+        </Container>
+    </Container>
     );
 }
 

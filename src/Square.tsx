@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
 import './Game.css';
 
 interface SquareProps {
@@ -8,9 +9,11 @@ interface SquareProps {
 
 const Square = (props: SquareProps): JSX.Element => {
     return (
-        <button className="square" onClick={props.handleClick}>
-            {props.player}
-        </button>
+        <div className="d-flex">
+            <button className="square btn btn-outline-dark rounded-0 p-4" onClick={props.handleClick}>
+                {props.player ? props.player : String.fromCharCode(0x2007)}
+            </button>
+        </div>
     );
 }
 

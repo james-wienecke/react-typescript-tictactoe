@@ -17,18 +17,18 @@ const Board = (props: BoardProps): JSX.Element => {
     }
 
     return (
-        <div>
-            <div className="board-row">
+        <div className="container">
+            <div className="board-row d-flex">
                 {renderSquare(0)}
                 {renderSquare(1)}
                 {renderSquare(2)}
             </div>
-            <div className="board-row">
+            <div className="board-row d-flex">
                 {renderSquare(3)}
                 {renderSquare(4)}
                 {renderSquare(5)}
             </div>
-            <div className="board-row">
+            <div className="board-row d-flex">
                 {renderSquare(6)}
                 {renderSquare(7)}
                 {renderSquare(8)}
