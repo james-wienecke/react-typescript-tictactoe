@@ -62,7 +62,7 @@ const Game = (): JSX.Element => {
     // hook to check if a player has won *after* all of Board's dom updates happen
     useLayoutEffect(checkWinner, [current]);
 
-    const moves: JSX.Element[] = history.map((board, move: number) => {
+    const moves: JSX.Element[] = history.map((board: number[], move: number) => {
         const label = move ? 'Go to move #' + move : "Go to game start";
         const classes = `flex-grow-1 ${step === move ? 'disabled' : ""}`;
         return (
