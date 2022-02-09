@@ -76,12 +76,17 @@ const Game = (): JSX.Element => {
 
     return (
     <Container className="game row mx-auto">
-        <Container className="game-board mx-auto my-4 col">
+        <h1 className="col-12">Tic-tac-toe</h1>
+        <Container className="game-board mx-auto my-4 col-12 col-lg-6">
+            <h2>Game</h2>
             <Board player={player} squares={current} handleClick={handleClick} />
         </Container>
-        <Container className="game-info col">
-            <Status player={player} winner={winner} step={step}/>
-            <ol>{moves}</ol>
+        <Container className="game-info my-4 col-12 col-lg-6">
+            <h2>Status</h2>
+            <Container className="row">
+                <Status player={player} winner={winner} step={step}/>
+                <ol className="col-12 col-lg-6">{moves}</ol>
+            </Container>
         </Container>
     </Container>
     );

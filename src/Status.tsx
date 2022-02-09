@@ -13,7 +13,7 @@ const Status = (props: StatusProps): JSX.Element => {
         else return (props.winner) ? `Winner: ${props.winner}!` :  `Next player: ${props.player}`;
     }
 
-    return (<span>
+    return (<span className="col-12 col-md-6">
         {getStatus()}
     </span>);
 }
