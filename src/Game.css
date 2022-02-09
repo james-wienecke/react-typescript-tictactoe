@@ -1,7 +1,16 @@
-.board-row {
-    display: flex;
-}
 .square {
-    width: 50px;
-    height: 50px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+.square:hover {
+    background-color: #CCCCCC;
+}
+.square>img {
+    height: 100%;
+    width: 100%;
+}
+
+.status-text {
+    font-size: 1.6rem;
 }

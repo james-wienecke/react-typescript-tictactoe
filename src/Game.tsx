@@ -2,6 +2,8 @@ import React, {useEffect, useLayoutEffect, useState} from "react";
 import "./Game.css"
 import Board from "./Board"
 import Status from "./Status";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
 const Game = (): JSX.Element => {
     // game board history
@@ -51,19 +53,22 @@ const Game = (): JSX.Element => {
             const [a, b, c] = lines[i];
             if (current[a] && current[a] === current[b] && current[a] === current[c]) {
                 setWinner(current[a]);
+                return;
             }
         }
+        setWinner('');
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
     useLayoutEffect(checkWinner, [current]);
 
-    const moves: JSX.Element[] = history.map((step, move) => {
+    const moves: JSX.Element[] = history.map((board: number[], move: number) => {
         const label = move ? 'Go to move #' + move : "Go to game start";
+        const classes = `flex-grow-1 ${step === move ? 'disabled' : ""}`;
         return (
-            <li key={move}>
-                <button onClick={() => jumpTo(move)}>{label}</button>
-            </li>
+            <div key={move} className="my-1 d-flex">
+                <Button className={classes} onClick={() => jumpTo(move)}>{label}</Button>
+            </div>
         );
     });
 
@@ -74,15 +79,20 @@ const Game = (): JSX.Element => {
     }
 
     return (
-    <div className="game">
-        <div className="game-board">
+    <Container className="game row mx-auto">
+        <h1 className="col-12">Tic-tac-toe</h1>
+        <Container className="game-board mx-auto my-4 col-12 col-lg-6">
+            <h2>Game</h2>
             <Board player={player} squares={current} handleClick={handleClick} />
-        </div>
-        <div className="game-info">
-            <Status player={player} winner={winner} step={step}/>
-            <ol>{moves}</ol>
-        </div>
-    </div>
+        </Container>
+        <Container className="game-info my-4 col-12 col-lg-6">
+            <h2>Status</h2>
+            <Container className="row shadow p-2">
+                <Status player={player} winner={winner} step={step}/>
+                <Container fluid className="col-12 col-lg-6">{moves}</Container>
+            </Container>
+        </Container>
+    </Container>
     );
 }
 

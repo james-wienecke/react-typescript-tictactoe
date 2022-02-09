@@ -13,9 +13,13 @@ const Status = (props: StatusProps): JSX.Element => {
         else return (props.winner) ? `Winner: ${props.winner}!` :  `Next player: ${props.player}`;
     }
 
-    return (<span>
-        {getStatus()}
-    </span>);
+    return (
+        <h3 className="status-text col-12 col-md-6 text-center flex-grow-1">
+            <span className="">
+                {getStatus()}
+            </span>
+        </h3>
+    );
 }
 
 export default Status;
