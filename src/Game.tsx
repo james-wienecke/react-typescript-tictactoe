@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import "./Game.css"
 import Board from "./Board"
 import Status from "./Status";
@@ -57,7 +57,7 @@ const Game = (): JSX.Element => {
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
-    useEffect(checkWinner);
+    useLayoutEffect(checkWinner, [history]);
 
     return (
     <div className="game">
