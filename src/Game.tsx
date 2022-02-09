@@ -8,27 +8,26 @@ const Game = (): JSX.Element => {
     const [history, setHistory] = useState([Array(9).fill(null)]);
     // board state at the current point in history
     const [current, setCurrent] = useState(history[history.length - 1]);
+    // current move being displayed
+    const [step, setStep] = useState(0);
     // active player
     const [player, setPlayer] = useState('X');
     // game winner
     const [winner, setWinner] = useState('');
 
-    const addToHistory = (board: string[]): void => {
-        const updated = history.slice();
-        updated.push(board);
-        setHistory(updated);
-    }
-
     const handleClick = (i: number): void => {
         // exit early from the click event if square is already filled or game is over
         if (winner || current[i]) return;
 
-        const selected: string[] = current.slice();
+        const past: string[][] = history.slice(0, step + 1);
+        const selected: string[] = past[past.length - 1].slice();
         selected[i] = player;
 
         // update states
         setCurrent(selected);
-        addToHistory(current);
+        past.push(selected);
+        setHistory(past);
+        setStep(history.length);
 
         swapPlayer();
     }
@@ -57,7 +56,22 @@ const Game = (): JSX.Element => {
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
-    useLayoutEffect(checkWinner, [player]);
+    useLayoutEffect(checkWinner, [current]);
+
+    const moves: JSX.Element[] = history.map((step, move) => {
+        const label = move ? 'Go to move #' + move : "Go to game start";
+        return (
+            <li key={move}>
+                <button onClick={() => jumpTo(move)}>{label}</button>
+            </li>
+        );
+    });
+
+    const jumpTo = (i: number): void => {
+        setPlayer(i % 2 ? 'O' : 'X');
+        setStep(i);
+        setCurrent(history[i]);
+    }
 
     return (
     <div className="game">
@@ -66,7 +80,7 @@ const Game = (): JSX.Element => {
         </div>
         <div className="game-info">
             <Status player={player} winner={winner} />
-            <ol>{/* To-do */}</ol>
+            <ol>{moves}</ol>
         </div>
     </div>
     );
