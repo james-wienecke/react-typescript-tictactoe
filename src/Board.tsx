@@ -1,6 +1,7 @@
 import * as React from "react";
 import './Game.css'
 import Square from "./Square";
+import Container from "react-bootstrap/Container";
 
 interface BoardProps {
     squares: string[];
@@ -17,7 +18,7 @@ const Board = (props: BoardProps): JSX.Element => {
     }
 
     return (
-        <div className="container">
+        <Container fluid className="border border-dark border-2 p-0">
             <div className="board-row d-flex">
                 {renderSquare(0)}
                 {renderSquare(1)}
@@ -33,7 +34,7 @@ const Board = (props: BoardProps): JSX.Element => {
                 {renderSquare(7)}
                 {renderSquare(8)}
             </div>
-        </div>
+        </Container>
     );
 }
 
