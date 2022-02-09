@@ -1,4 +1,4 @@
-import React from "react";
+import React, {CSSProperties} from "react";
 import Button from "react-bootstrap/Button";
 import './Game.css';
 import blank from "./assets/blank.svg";
@@ -8,6 +8,7 @@ import o from "./assets/O.svg";
 interface SquareProps {
     handleClick: () => void;
     player: string;
+    index: number;
 }
 
 const Square = (props: SquareProps): JSX.Element => {
@@ -19,19 +20,13 @@ const Square = (props: SquareProps): JSX.Element => {
         }
     }
 
-    const getSVG = () : JSX.Element => {
-        switch (props.player) {
-            case 'X':
-                return <img alt={props.player + " space"} src={x} />
-            case 'O':
-                return <img alt={props.player + " space"} src={o}/>
-            default:
-                return <img alt={props.player + " space"} src={blank} />
-        }
+    const setStyle = (): CSSProperties => {
+
+        return
     }
 
     return (
-        <button className="square p-1" onClick={props.handleClick}>
+        <button className="square p-1" style={setStyle()} onClick={props.handleClick}>
             {/*{props.player ? props.player : String.fromCharCode(0x2007)}*/}
             <img src={getImage()} alt={`${props.player} space`} />
         </button>
