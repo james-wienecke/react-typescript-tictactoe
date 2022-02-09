@@ -1,14 +1,15 @@
 import React from "react";
-import AppProps from "./AppProps";
 import './Game.css';
 
+interface SquareProps {
+    handleClick: () => void;
+    player: string;
+}
 
-const Square = (props: AppProps): JSX.Element => {
-    // const [value, setValue] = useState("")
-
+const Square = (props: SquareProps): JSX.Element => {
     return (
-        <button className="square" onClick={props.onClick}>
-            {props.value}
+        <button className="square" onClick={props.handleClick}>
+            {props.player}
         </button>
     );
 }

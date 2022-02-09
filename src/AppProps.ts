@@ -1,6 +1,8 @@
 export default interface AppProps {
     value?: number;
-    onClick?: () => void;
+    onClick?: (i: number) => void;
+    handleClick?: () => void;
     player?: string;
     winner?: string;
+    squares?: string[];
 }
