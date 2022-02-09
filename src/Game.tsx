@@ -53,8 +53,10 @@ const Game = (): JSX.Element => {
             const [a, b, c] = lines[i];
             if (current[a] && current[a] === current[b] && current[a] === current[c]) {
                 setWinner(current[a]);
+                return;
             }
         }
+        setWinner('');
     }
 
     // hook to check if a player has won *after* all of Board's dom updates happen
