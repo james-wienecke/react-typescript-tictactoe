@@ -1,7 +1,10 @@
 .square {
+    padding: 0;
     height: 100%;
     width: 100%;
-    background-color: #F9F9F9;
+    background-color: white;
+    border-color: #222222;
+    border-width: 1px;
 }
 .square:hover {
     background-color: #CCCCCC;
@@ -9,4 +12,8 @@
 .square>img {
     height: 100%;
     width: 100%;
+}
+
+.status-text {
+    font-size: 1.6rem;
 }

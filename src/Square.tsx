@@ -31,7 +31,7 @@ const Square = (props: SquareProps): JSX.Element => {
     }
 
     return (
-        <button className="square rounded-0" onClick={props.handleClick}>
+        <button className="square p-1" onClick={props.handleClick}>
             {/*{props.player ? props.player : String.fromCharCode(0x2007)}*/}
             <img src={getImage()} alt={`${props.player} space`} />
         </button>

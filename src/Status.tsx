@@ -14,7 +14,7 @@ const Status = (props: StatusProps): JSX.Element => {
     }
 
     return (
-        <h3 className="col-12 col-md-6 text-center flex-grow-1">
+        <h3 className="status-text col-12 col-md-6 text-center flex-grow-1">
             <span className="">
                 {getStatus()}
             </span>

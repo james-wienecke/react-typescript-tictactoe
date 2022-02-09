@@ -12,13 +12,15 @@ interface BoardProps {
 const Board = (props: BoardProps): JSX.Element => {
     const renderSquare = (i: number): JSX.Element => {
         return (
-            <Square player={props.squares[i]}
-            handleClick={() => props.handleClick(i)}/>
+            <Square
+                player={props.squares[i]}
+                index={i}
+                handleClick={() => props.handleClick(i)}/>
         )
     }
 
     return (
-        <Container fluid className="border border-dark border-2 p-0">
+        <Container fluid className="shadow p-0">
             <div className="board-row d-flex">
                 {renderSquare(0)}
                 {renderSquare(1)}
