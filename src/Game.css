@@ -1,12 +1,11 @@
-/*.board-row {*/
-/*    display: flex;*/
-/*}*/
 .square {
-    /*padding-top: 75%;*/
     height: 100%;
     width: 100%;
+    background-color: #F9F9F9;
 }
-
+.square:hover {
+    background-color: #CCCCCC;
+}
 .square>img {
     height: 100%;
     width: 100%;
