@@ -86,7 +86,7 @@ const Game = (): JSX.Element => {
         </Container>
         <Container className="game-info my-4 col-12 col-lg-6">
             <h2>Status</h2>
-            <Container className="row shadow border border-dark border-1 p-2">
+            <Container className="row shadow-sm p-2">
                 <Status player={player} winner={winner} step={step}/>
                 <Container fluid className="col-12 col-lg-6">{moves}</Container>
             </Container>

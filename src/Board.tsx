@@ -20,7 +20,7 @@ const Board = (props: BoardProps): JSX.Element => {
     }
 
     return (
-        <Container fluid className="shadow p-0">
+        <Container fluid className="shadow-sm p-2">
             <div className="board-row d-flex">
                 {renderSquare(0)}
                 {renderSquare(1)}
