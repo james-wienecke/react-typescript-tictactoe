@@ -29,7 +29,7 @@ const Game = (): JSX.Element => {
         setCurrent(selected);
         past.push(selected);
         setHistory(past);
-        setStep(history.length);
+        setStep(step + 1);
 
         swapPlayer();
     }
@@ -62,28 +62,16 @@ const Game = (): JSX.Element => {
     // hook to check if a player has won *after* all of Board's dom updates happen
     useLayoutEffect(checkWinner, [current]);
 
-    // const moves: JSX.Element[] = history.map((board: number[], move: number) => {
-    //     const label = move ? 'Go to move #' + move : "Go to game start";
-    //     //const classes = `flex-grow-1 ${step === move ? 'disabled' : ""}`;
-    //     return (
-    //         <div key={move} className="my-1 d-flex">
-    //             <Button disabled={step === move} className="flex-grow-1" onClick={() => jumpTo(move)}>{label}</Button>
-    //         </div>
-    //     );
-    // });
-
-    const moves = (): JSX.Element[] => {
-        return history.map((board: number[], move: number) => {
-            return (
-                <Button key={move}
-                    disabled={step === move}
-                    className="w-100 my-1"
-                    onClick={() => jumpTo(move)}>
-                    {move ? `Go to move #${move}` : `Go to game start`}
-                </Button>
-            );
-        });
-    }
+    const moves: JSX.Element[] = history.map((board: number[], move: number) => {
+        return (
+            <Button key={move}
+                disabled={step === move}
+                className="w-100 my-1"
+                onClick={() => jumpTo(move)}>
+                {move ? `Go to move #${move}` : `Go to game start`}
+            </Button>
+        );
+    });
 
     const jumpTo = (i: number): void => {
         setPlayer(i % 2 ? 'O' : 'X');
@@ -102,7 +90,7 @@ const Game = (): JSX.Element => {
             <h2>Status</h2>
             <Container className="row shadow p-2">
                 <Status player={player} winner={winner} step={step}/>
-                <Container fluid className="col-12 col-lg-6">{moves()}</Container>
+                <Container fluid className="col-12 col-lg-6">{moves}</Container>
             </Container>
         </Container>
     </Container>
