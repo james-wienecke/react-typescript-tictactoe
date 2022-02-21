@@ -2,9 +2,9 @@ import React, {CSSProperties} from "react";
 import Button from "react-bootstrap/Button";
 import * as CSS from "csstype";
 import './Game.css';
-import blank from "./assets/blank.svg";
-import x from "./assets/X.svg";
-import o from "./assets/O.svg";
+import blankMarker from "./assets/blank.svg";
+import xMarker from "./assets/X.svg";
+import oMarker from "./assets/O.svg";
 
 interface SquareProps {
     handleClick: () => void;
@@ -15,9 +15,9 @@ interface SquareProps {
 const Square = (props: SquareProps): JSX.Element => {
     const getImage = (): string => {
         if (props.player) {
-            return props.player === 'X' ? x : o;
+            return props.player === 'X' ? xMarker : oMarker;
         } else {
-            return blank;
+            return blankMarker;
         }
     }
 

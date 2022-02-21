@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, { useLayoutEffect, useState } from "react";
 import "./Game.css"
 import Board from "./Board"
 import Status from "./Status";
@@ -29,7 +29,7 @@ const Game = (): JSX.Element => {
         setCurrent(selected);
         past.push(selected);
         setHistory(past);
-        setStep(history.length);
+        setStep(step + 1);
 
         swapPlayer();
     }
@@ -63,12 +63,13 @@ const Game = (): JSX.Element => {
     useLayoutEffect(checkWinner, [current]);
 
     const moves: JSX.Element[] = history.map((board: number[], move: number) => {
-        const label = move ? 'Go to move #' + move : "Go to game start";
-        const classes = `flex-grow-1 ${step === move ? 'disabled' : ""}`;
         return (
-            <div key={move} className="my-1 d-flex">
-                <Button className={classes} onClick={() => jumpTo(move)}>{label}</Button>
-            </div>
+            <Button key={move}
+                disabled={step === move}
+                className="w-100 my-1"
+                onClick={() => jumpTo(move)}>
+                {move ? `Go to move #${move}` : `Go to game start`}
+            </Button>
         );
     });
 
